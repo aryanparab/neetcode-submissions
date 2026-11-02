@@ -1,0 +1,16 @@
+class Solution:
+    def checkInclusion(self, s1: str, s2: str) -> bool:
+        if len(s1)>len(s2):return False
+        alpha1 = [0 for i in range(26)]
+        alpha2 = [0 for i in range(26)]
+        for i in range(len(s1)):
+            alpha1[ord(s1[i])-97]+=1
+            alpha2[ord(s2[i])-97]+=1
+        if alpha1==alpha2:return True
+
+        for i in range(len(s1),len(s2)):
+           
+            alpha2[ord(s2[i-len(s1)])-97]-=1
+            alpha2[ord(s2[i])-97]+=1
+            if alpha1==alpha2:return True
+        return False
